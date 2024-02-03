@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Style for buttons */
+        button {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            position: relative;
+            z-index: 1;
+            color: #fff;
+        }
+
+        /* Style for "Yes" button */
+        #yes-button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+        }
+
+        /* Style for "No" button */
+        #no-button {
+            background-color: #FF5733; /* Reddish Orange */
+            border: none;
+        }
+
+        /* Style for button container */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row; /* Set the direction to row */
+            height: 100vh; /* Make the container take up the full viewport height */
+            background-color: #f0f0f0; /* Light Gray */
+        }
+
+        /* Style for heading */
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Style for emoji */
+        .emoji {
+            font-size: 24px;
+            margin-right: 5px;
+        }
+
+        /* Style for GIF image */
+        #gif-image {
+            display: none;
+            width: 100%; /* Set the width to 100% of the container */
+            max-width: 500px; /* Set a max-width to limit the size of the GIF */
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    // JavaScript for moving the "No" button around the page
+    document.addEventListener("DOMContentLoaded", function() {
+        var noButton = document.getElementById("no-button");
+
+        noButton.addEventListener("mouseenter", function() {
+            moveButton();
+        });
+
+        function moveButton() {
+            var maxX = window.innerWidth - noButton.offsetWidth;
+            var maxY = window.innerHeight - noButton.offsetHeight;
+
+            var randomX = Math.floor(Math.random() * maxX);
+            var randomY = Math.floor(Math.random() * maxY);
+
+            noButton.style.transform = "translate(" + randomX + "px, " + randomY + "px)";
+        }
+
+        var yesButton = document.getElementById("yes-button");
+        var noButton = document.getElementById("no-button");
+        var gifImage = document.getElementById("gif-image");
+
+        yesButton.addEventListener("click", function() {
+            showGif();
+            hideNoButton();
+        });
+
+        function showGif() {
+            
+            var gifUrl = "https://media.tenor.com/Doz_0PR3GQkAAAAi/cat-cats.gif";
+            gifImage.src = gifUrl;
+            gifImage.style.display = "block";
+
+        }
+
+        function hideNoButton() {
+            noButton.style.display = "none";
+        }
+    });
+</script>
+
+<h1><span class="emoji">❤️</span> Do you want to come out with me <span class="emoji">❤️</span></h1>
+<div class="button-container">
+    <button id="yes-button" >Yes</button>
+    <button id="no-button" onclick="alert('You clicked No!')">No</button>
+    <img id="gif-image" alt="Love GIF">
+</div>
+
+</body>
+</html>
